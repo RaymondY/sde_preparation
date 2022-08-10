@@ -1,6 +1,11 @@
 ## Useful
 
 *   **Python ord() function** returns the Unicode code from a given character. This function accepts a string of unit length as an argument and returns the Unicode equivalence of the passed argument.
+*   For division
+    *   Truncate toward zero: `int()`
+    *   Round: `round()`
+    *   Round up: `math.ceil()`
+    *   Round down: `math.floor() or //`
 
 
 
