@@ -7,7 +7,25 @@
     *   Round up: `math.ceil()`
     *   Round down: `math.floor() or //`
 
+*   `from queue import PriorityQueue`
 
+    *   `pq.put()` `pq.get()`
+
+*   `Queue.Queue` and `collections.deque` serve different purposes. Queue.Queue is intended for allowing different threads to communicate using queued messages/data, whereas `collections.deque` is simply intended as a datastructure. That's why `Queue.Queue` has methods like `put_nowait()`, `get_nowait()`, and `join()`, whereas `collections.deque` doesn't. `Queue.Queue` isn't intended to be used as a collection, which is why it lacks the likes of the `in` operator.
+
+    It boils down to this: if you have multiple threads and you want them to be able to communicate without the need for locks, you're looking for `Queue.Queue`; if you just want a queue or a double-ended queue as a datastructure, use `collections.deque`.
+
+    Finally, accessing and manipulating the internal deque of a `Queue.Queue` is playing with fire - you really don't want to be doing that. [python - Queue.Queue vs. collections.deque - Stack Overflow](https://stackoverflow.com/questions/717148/queue-queue-vs-collections-deque)
+
+    *   ```python
+        from collections import deque
+        queue = deque()
+        queue.append()
+        queue.popleft()
+        queue.pop()
+        ```
+
+    *   
 
 ## List tricks
 
@@ -38,7 +56,9 @@
         [('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]
         ```
 
-*   -
+*   `list.reverse()`
+
+*   `list.index()`
 
 ## Priority Queue
 
