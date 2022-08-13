@@ -67,9 +67,39 @@
 >   [queue — A synchronized queue class — Python 3.10.6 documentation](https://docs.python.org/3/library/queue.html#queue.PriorityQueue)
 
 *   Insert: `.put(item, ...)`; $O(\log n)$
-    *   just make a tuple of `(priority, thing)`
+    *   ==just make a tuple of `(priority, thing)`==
 *   Pop: `.get()`;  $O(\log n)$
 *   While end condition: `.empty()`
+
+### !!! Sample C - class objects using __cmp__()
+
+```python
+try:
+    import Queue as Q  # ver. < 3.0
+except ImportError:
+    import queue as Q
+
+class Skill(object):
+    def __init__(self, priority, description):
+        self.priority = priority
+        self.description = description
+        print 'New Level:', description
+        return
+    def __cmp__(self, other):
+        return cmp(self.priority, other.priority)
+
+q = Q.PriorityQueue()
+
+q.put(Skill(5, 'Proficient'))
+q.put(Skill(10, 'Expert'))
+q.put(Skill(1, 'Novice'))
+
+while not q.empty():
+    next_level = q.get()
+    print 'Processing level:', next_level.description
+```
+
+
 
 ## Hash
 
